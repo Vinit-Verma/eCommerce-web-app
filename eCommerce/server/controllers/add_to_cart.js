@@ -24,8 +24,9 @@ module.exports.add_to_cart = async (req, res) => {
 };
 
 module.exports.get_for_cart = async (req, res) => {
+  const user = req.headers.user;
   cartModel
-    .find()
+    .find({ user: user })
     .populate("user")
     .populate("product_id")
     .exec()
@@ -37,4 +38,9 @@ module.exports.get_for_cart = async (req, res) => {
 module.exports.delete = async (req, res) => {
   const id = req.params.id;
   await cartModel.findByIdAndDelete(id).exec();
+};
+
+module.exports.delete_many = async (req, res) => {
+  const user = req.headers.user;
+  await cartModel.deleteMany({ user });
 };

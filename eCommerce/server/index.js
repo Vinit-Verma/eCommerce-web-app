@@ -10,6 +10,7 @@ const admin = require("./routes/adminRoutes");
 const fetch_All_Products = require("./routes/fetch_All_Product");
 const add_to_cart = require("./routes/add_to_cart");
 const pay = require("./routes/pay");
+const orders = require("./routes/orders");
 
 require("dotenv").config();
 
@@ -38,3 +39,4 @@ app.use("/admin", admin);
 app.use("/", fetch_All_Products);
 app.use("/", add_to_cart);
 app.use("/", pay);
+app.use("/", orders);
