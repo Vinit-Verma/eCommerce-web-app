@@ -11,6 +11,7 @@ const fetch_All_Products = require("./routes/fetch_All_Product");
 const add_to_cart = require("./routes/add_to_cart");
 const pay = require("./routes/pay");
 const orders = require("./routes/orders");
+const forgot_Passwprd = require("./routes/forgot_Password");
 
 require("dotenv").config();
 
@@ -35,6 +36,7 @@ app.listen(3001, () => {
 
 app.use("/", signUp);
 app.use("/", login);
+app.use("/", forgot_Passwprd);
 app.use("/admin", admin);
 app.use("/", fetch_All_Products);
 app.use("/", add_to_cart);
