@@ -1,4 +1,5 @@
 const cartModel = require("../models/cart");
+const productModel = require("../models/product");
 
 module.exports.add_to_cart = async (req, res) => {
   const user = req.body.user;
@@ -7,19 +8,38 @@ module.exports.add_to_cart = async (req, res) => {
   const date_added_to_cart = req.body.date_added_to_cart;
   const color = req.body.color;
   const size = req.body.size;
-  const new_cart = new cartModel({
-    user,
-    product_id,
-    product_quantity,
-    date_added_to_cart,
-    color,
-    size,
-  });
-  try {
-    await new_cart.save();
-    res.send("Product added to cart");
-  } catch (error) {
-    console.log(error);
+  const existing_product = await cartModel.findOne({ product_id });
+  // console.log("existing", existing_product);
+  if (existing_product) {
+    const product = await productModel.findOne({ _id: product_id });
+    const quantityUpperLimit = product.product_quantity;
+    const quantity = existing_product.product_quantity;
+    let updated_quantity = quantity + product_quantity;
+    if (updated_quantity > quantityUpperLimit) {
+      updated_quantity = quantityUpperLimit;
+    }
+    await cartModel.findOneAndUpdate(
+      { product_id },
+      { product_quantity: updated_quantity }
+    );
+    res.send("Quantity updated!");
+  }
+
+  if (existing_product === null) {
+    const new_cart = new cartModel({
+      user,
+      product_id,
+      product_quantity,
+      date_added_to_cart,
+      color,
+      size,
+    });
+    try {
+      await new_cart.save();
+      res.send("Product added to cart");
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 

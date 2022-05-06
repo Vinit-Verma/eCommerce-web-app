@@ -1,8 +1,15 @@
 import "../App.css";
 import { useNavigate } from "react-router-dom";
+import Axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import cart_badge_context from "../context/cart_badge/cart_badge_context";
 
 const Header = () => {
+  const context = useContext(cart_badge_context);
+  const [data_for_icon_badge, setData_for_icon_badge] = useState([]);
   const navigate = useNavigate();
+  // console.log(context);
 
   const handleSignUpClick = () => {
     navigate("/signUp");
@@ -30,6 +37,23 @@ const Header = () => {
     localStorage.removeItem("email");
     navigate("/");
   };
+
+  const fetch_for_cart = () => {
+    Axios.get("http://localhost:3001/cart", {
+      headers: {
+        user: localStorage.getItem("user_id"),
+      },
+    }).then(async (res) => {
+      await setData_for_icon_badge(res.data);
+    });
+  };
+  // console.log(data_for_icon_badge.length);
+
+  useEffect(() => {
+    fetch_for_cart();
+    context.setTrue();
+  }, [context.cartBadgeSignal]);
+
   return (
     <header>
       <nav>
@@ -54,7 +78,7 @@ const Header = () => {
                     : { display: "none" }
                 }
               >
-                5
+                {data_for_icon_badge.length}
               </div>
               <input
                 type="button"

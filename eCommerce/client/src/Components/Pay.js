@@ -12,6 +12,8 @@ const Pay = () => {
   const sum = location.state.amount;
   const data = location.state.data;
 
+  console.log(data);
+
   const product_data = data.map((ele) => {
     return ele["product_id"];
   });

@@ -2,8 +2,28 @@ import React from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import { useContext } from "react";
+import cart_badge_context from "../context/cart_badge/cart_badge_context";
 
 const SingleProduct = (props) => {
+  const context = useContext(cart_badge_context);
+  // const [data_for_cart, setData_for_cart] = useState([]);
+  // // console.log(data_for_cart);
+  // const fetch_for_cart = () => {
+  //   Axios.get("http://localhost:3001/cart", {
+  //     headers: {
+  //       user: localStorage.getItem("user_id"),
+  //     },
+  //   }).then(async (res) => {
+  //     await setData_for_cart(res.data);
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   fetch_for_cart();
+  //   // console.log("useEffect", data_for_cart);
+  // }, []);
+
   const { data } = props;
   // console.log("data is", data);
   const navigate = useNavigate();
@@ -39,6 +59,7 @@ const SingleProduct = (props) => {
         size: "Size pending....",
       })
     ) {
+      context.setFalse();
       alert("Product added to your cart!");
     }
   };

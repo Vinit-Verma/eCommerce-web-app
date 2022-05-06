@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { useContext } from "react";
+import cart_badge_context from "../context/cart_badge/cart_badge_context";
 
 const CartSingleProduct = (props) => {
+  const context = useContext(cart_badge_context);
   const { data } = props;
   // console.log("data is ", data);
   const total = data.product_id.product_quantity;
@@ -26,6 +29,7 @@ const CartSingleProduct = (props) => {
   const handleDelete = (id) => {
     if (Axios.delete(`http://localhost:3001/delete/${id}`)) {
       props.callBack(true);
+      context.setFalse();
       // alert("Product deleted from cart!");
     }
   };
@@ -43,20 +47,20 @@ const CartSingleProduct = (props) => {
           {data.product_id.product_description}
         </article>
         <div className="quantityDiv extra">
-          <input
+          {/* <input
             type="button"
             value="&nbsp; &#x2212; &nbsp;"
             className="subBtn"
             onClick={handle_dec}
-          />
+          /> */}
           {/* <span>Quantity : {data.product_id.product_quantity} </span> */}
           <span>Quantity : {qty} </span>
-          <input
+          {/* <input
             type="button"
             value="&nbsp; &#x2b; &nbsp;"
             className="addBtn"
             onClick={handle_inc}
-          />
+          /> */}
         </div>
         <div className="priceDiv">
           <div>

@@ -3,8 +3,11 @@ import "../App.css";
 import Title from "./Title";
 import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
+import { useContext } from "react";
+import cart_badge_context from "../context/cart_badge/cart_badge_context";
 
 const ProductDetails = () => {
+  const context = useContext(cart_badge_context);
   const [qty, setQty] = useState(1);
   const location = useLocation();
   const product_data = location.state;
@@ -33,16 +36,16 @@ const ProductDetails = () => {
     });
   };
 
-  const update = () => {
-    const new_qty = product_data.total - qty;
-    const p_id = product_data.id;
-    // console.log("new qty : ", new_qty);
-    Axios.patch("http://localhost:3001/update", {
-      id: p_id,
-      num: new_qty,
-    });
-    // console.log("update qty :", qty);
-  };
+  // const update = () => {
+  //   const new_qty = product_data.total - qty;
+  //   const p_id = product_data.id;
+  //   // console.log("new qty : ", new_qty);
+  //   Axios.patch("http://localhost:3001/update", {
+  //     id: p_id,
+  //     num: new_qty,
+  //   });
+  //   // console.log("update qty :", qty);
+  // };
 
   const date = new Date().toJSON();
 
@@ -57,7 +60,8 @@ const ProductDetails = () => {
         size: "Size pending....",
       })
     ) {
-      update();
+      // update();
+      context.setFalse();
       alert("Product added to your cart!");
       navigate("/cart");
     }
