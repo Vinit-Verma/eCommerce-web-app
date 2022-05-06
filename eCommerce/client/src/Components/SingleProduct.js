@@ -92,6 +92,7 @@ const SingleProduct = (props) => {
                   ? { display: "none" }
                   : { display: "" }
               }
+              disabled={data.product_quantity === 0}
             />
           </div>
         </div>

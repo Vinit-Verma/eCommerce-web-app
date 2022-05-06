@@ -581,3 +581,18 @@ main {
   margin-top: -10px;
   margin-left: -12px;
 }
+.select_div {
+  float: right;
+}
+.select_div select {
+  padding: 5px;
+  margin: 10px 0px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.select_div select:first-child {
+  border-bottom: 5px solid var(--my-color);
+  border-right: 5px solid var(--my-color);
+}
