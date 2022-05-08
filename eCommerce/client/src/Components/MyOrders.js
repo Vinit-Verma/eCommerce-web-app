@@ -7,14 +7,14 @@ const MyOrders = () => {
     <div className="outerDiv">
       <div className="innerOrderDiv">
         <Title title={"My Orders"} />
-        <div className="select_div">
+        {/* <div className="select_div">
           <select name="duration" id="duration">
             <option value="all">All records</option>
             <option value="may">May</option>
             <option value="april">April</option>
             <option value="march">March</option>
           </select>
-        </div>
+        </div> */}
         <Tabs />
       </div>
     </div>

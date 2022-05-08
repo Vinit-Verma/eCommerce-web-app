@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 
-const SinglePlacedOrder = () => {
+const SinglePlacedOrder = (props) => {
   const [data_fetched, setData_fetched] = useState([]);
 
   useEffect(() => {
@@ -14,25 +14,32 @@ const SinglePlacedOrder = () => {
         user: localStorage.getItem("user_id"),
       },
     }).then((res) => {
-      // console.log(res.data);
       setData_fetched(res.data);
     });
   };
 
-  const rowList = data_fetched.map((ele, index) => {
-    return (
-      <tr key={index}>
-        <td>{ele.createdAt.substring(0, 10)}</td>
-        <td>
-          {ele.products.map((ele, index) => {
-            return <div key={index}>{ele.product_name}</div>;
-          })}
-        </td>
-        <td>{ele.address}</td>
-        <td>{ele.amount}</td>
-      </tr>
-    );
-  });
+  const rowList = data_fetched
+    .filter((val) => {
+      if (props.month === "") {
+        return val;
+      } else if (String(new Date(val.createdAt).getMonth()) === props.month) {
+        return val;
+      }
+    })
+    .map((ele, index) => {
+      return (
+        <tr key={index}>
+          <td>{ele.createdAt.substring(0, 10)}</td>
+          <td>
+            {ele.products.map((ele, index) => {
+              return <div key={index}>{ele.product_name}</div>;
+            })}
+          </td>
+          <td>{ele.address}</td>
+          <td>{ele.amount}</td>
+        </tr>
+      );
+    });
 
   return (
     <>

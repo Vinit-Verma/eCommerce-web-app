@@ -12,7 +12,7 @@ module.exports.fetch_data = async (req, res) => {
     //   status: false,
     //   createdAt: {
     //     $gte: Date("2022-04-01T00:00:00Z"),
-    //     $lt: Date("2022-04-30T00:00:00Z"),
+    //     // $lt: Date("2022-04-30T00:00:00Z"),
     //   },
     // })
     .find({ user: user, status: false })

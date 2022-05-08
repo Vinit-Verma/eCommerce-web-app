@@ -595,4 +595,6 @@ main {
 .select_div select:first-child {
   border-bottom: 5px solid var(--my-color);
   border-right: 5px solid var(--my-color);
+  border-left: none;
+  border-top: none;
 }

@@ -59,6 +59,7 @@ const Pay = () => {
 
   const handle_pay = () => {
     if (sum > 0) {
+      window.confirm("Are you sure you want to buy ?");
       if (
         Axios.post("http://localhost:3001/pay", {
           amount: sum,
