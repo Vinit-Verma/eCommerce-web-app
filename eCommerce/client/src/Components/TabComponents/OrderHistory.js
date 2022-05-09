@@ -38,8 +38,8 @@ const OrderHistory = () => {
         <tr key={index}>
           <td>{ele.createdAt.substring(0, 10)}</td>
           <td>
-            {ele.products.map((ele, index) => {
-              return <div key={index}>{ele.product_name}</div>;
+            {ele.products.map((product, index) => {
+              return <div key={index}>{product}</div>;
             })}
           </td>
           <td>{ele.address}</td>

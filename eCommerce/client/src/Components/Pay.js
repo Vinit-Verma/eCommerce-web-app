@@ -20,7 +20,7 @@ const Pay = () => {
   const product_data = data.map((ele) => {
     return ele["product_id"];
   });
-  // console.log("product_data are :", product_data);
+  console.log("product_data are :", product_data);
 
   const total_quantity = product_data.map((ele) => {
     return ele["product_quantity"];
@@ -31,6 +31,12 @@ const Pay = () => {
     return ele["_id"];
   });
   // console.log("product_ids are :", product_ids);
+
+  const product_names = product_data.map((ele) => {
+    return ele["product_name"];
+    return [ele["product_name"], ele["product_img1"]];
+  });
+  console.log("product_names are :", product_names);
 
   let total_final_data = {};
   product_ids.forEach((key, i) => {
@@ -63,7 +69,7 @@ const Pay = () => {
       if (
         Axios.post("http://localhost:3001/pay", {
           amount: sum,
-          products: product_ids,
+          products: product_names,
           user: localStorage.getItem("user_id"),
           address: address,
           status: false,

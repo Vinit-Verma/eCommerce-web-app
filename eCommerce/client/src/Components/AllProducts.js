@@ -11,6 +11,8 @@ const AllProducts = () => {
     fetch_All_Products();
   }, []);
 
+  console.log("All_products", data_Fetched);
+
   function fetch_All_Products() {
     Axios.get("http://localhost:3001/").then(async (res) => {
       await setData_Fetched(res.data);

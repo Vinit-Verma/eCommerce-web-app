@@ -10,7 +10,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const [signal, setSignal] = useState(false);
 
-  console.log(data_for_cart);
+  console.log("From cart", data_for_cart);
 
   const sum = data_for_cart.reduce(
     (a, v) => a + v.product_id.product_disc_price * v.product_quantity,

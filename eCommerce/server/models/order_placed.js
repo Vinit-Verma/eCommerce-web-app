@@ -7,7 +7,7 @@ const placed_order = new mongoose.Schema(
     },
     products: {
       type: mongoose.Schema.Types.Array,
-      ref: "Product",
+      // ref: "Product",
       required: true,
     },
     user: {

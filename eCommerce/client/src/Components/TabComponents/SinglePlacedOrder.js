@@ -14,6 +14,7 @@ const SinglePlacedOrder = (props) => {
         user: localStorage.getItem("user_id"),
       },
     }).then((res) => {
+      console.log(res.data);
       setData_fetched(res.data);
     });
   };
@@ -31,9 +32,12 @@ const SinglePlacedOrder = (props) => {
         <tr key={index}>
           <td>{ele.createdAt.substring(0, 10)}</td>
           <td>
-            {ele.products.map((ele, index) => {
-              return <div key={index}>{ele.product_name}</div>;
+            {ele.products.map((product, index) => {
+              return <div key={index}>{product}</div>;
             })}
+            {/* {ele.products.map((ele, index) => {
+              return <div key={index}>{ele.product_name}</div>;
+            })} */}
           </td>
           <td>{ele.address}</td>
           <td>{ele.amount}</td>
