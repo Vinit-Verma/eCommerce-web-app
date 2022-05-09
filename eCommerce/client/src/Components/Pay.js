@@ -58,7 +58,7 @@ const Pay = () => {
   const [address, setAddress] = useState("");
 
   const handle_pay = () => {
-    if (sum > 0 && address.length !== 0) {
+    if (address.length !== 0) {
       window.confirm("Are you sure you want to buy ?");
       if (
         Axios.post("http://localhost:3001/pay", {
@@ -87,7 +87,7 @@ const Pay = () => {
         }
       }
     } else {
-      alert("Insufficient info!");
+      alert("Please enter an address!");
     }
   };
 
