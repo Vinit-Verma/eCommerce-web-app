@@ -7,7 +7,7 @@ app.use(express.json());
 
 module.exports.fetch_All_Products = async (req, res) => {
   productModel
-    .find()
+    .find({ display: true })
     .populate()
     .exec()
     .then((data) => {

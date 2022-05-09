@@ -45,14 +45,16 @@ module.exports.add_to_cart = async (req, res) => {
 
 module.exports.get_for_cart = async (req, res) => {
   const user = req.headers.user;
-  cartModel
-    .find({ user: user })
-    .populate("user")
-    .populate("product_id")
-    .exec()
-    .then((data) => {
-      res.json(data);
-    });
+  if (user) {
+    cartModel
+      .find({ user: user })
+      .populate("user")
+      .populate("product_id")
+      .exec()
+      .then((data) => {
+        res.json(data);
+      });
+  }
 };
 
 module.exports.delete = async (req, res) => {

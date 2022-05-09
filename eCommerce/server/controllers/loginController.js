@@ -17,11 +17,13 @@ module.exports.login = async (req, res) => {
     res.send("No user Found with such email!");
   }
 
-  const passwordMatch = bcrypt.compareSync(password, existingUser.password);
-  if (!passwordMatch) {
-    console.log("Password Mismatched!");
-    res.send("Password Mismatched!");
-  }
+  if (existingUser) {
+    const passwordMatch = bcrypt.compareSync(password, existingUser.password);
+    if (!passwordMatch) {
+      console.log("Password Mismatched!");
+      res.send("Password Mismatched!");
+    }
 
-  if (existingUser && passwordMatch) res.send({ token, existingUser });
+    if (existingUser && passwordMatch) res.send({ token, existingUser });
+  }
 };

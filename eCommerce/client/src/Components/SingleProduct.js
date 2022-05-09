@@ -70,7 +70,7 @@ const SingleProduct = (props) => {
           <figure className="pImgFig">
             <img
               src={require("../images/" + data.product_img1)}
-              alt=""
+              alt="product img"
               className="pImg"
             />
           </figure>

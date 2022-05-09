@@ -31,8 +31,9 @@ const Login = () => {
         localStorage.setItem("email", res.data.existingUser.email);
         navigate("/");
       }
+
       if (res.headers["content-length"] < 200) {
-        alert(res.data.errors[0].msg);
+        alert(res.data);
       }
       if (res.data === "No user Found with such email!") {
         alert(res.data);

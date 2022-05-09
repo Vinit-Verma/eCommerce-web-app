@@ -82,6 +82,7 @@ main {
   border: solid 2px black;
   margin: 12px 30px;
   min-width: 120px;
+  max-width: 125px;
   /* max-height: 100px; */
 }
 .pImgFig {

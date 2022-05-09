@@ -43,6 +43,10 @@ const productSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  display: {
+    type: Boolean,
+    required: true,
+  },
   // color_and_size: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: "ColorAndSize",
